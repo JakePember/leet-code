@@ -16,15 +16,20 @@
 
 import spock.lang.Specification
 
-class HelloSpockSpec extends Specification {
-  def "length of Spock's and his friends' names"() {
-    expect:
-    name.size() == length
+class LargestNumberAtLeastTwiceOfOthersSpec extends Specification {
+    def "FindPivotIndex; Return the index where the left and right side of the index have the same sum"() {
+        setup: "Convert the List<int> to an array of int values"
+        int[] _input = input.toArray()
 
-    where:
-    name     | length
-    "Spock"  | 5
-    "Kirk"   | 4
-    "Scotty" | 6
-  }
-}  
+        expect:
+        LargestNumberAtLeastTwiceOfOthers.dominantIndex(_input) == result
+
+        where:
+        input        || result
+        [3, 6, 1, 0] || 1
+        [1, 2, 3, 4] || -1
+        [0, 0, 2, 3] || -1
+        [0, 1, 1, 2] || 3
+        [0, 0, 3, 2] || -1
+    }
+}

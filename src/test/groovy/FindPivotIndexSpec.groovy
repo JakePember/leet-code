@@ -14,24 +14,19 @@
  * limitations under the License.
  */
 
-import groovy.sql.Sql
-import spock.lang.Shared
-import spock.lang.Specification
+import spock.lang.*
 
-class DatabaseDrivenSpec extends Specification {
-  @Shared sql = Sql.newInstance("jdbc:h2:mem:", "org.h2.Driver")
-  
-  // insert data (usually the database would already contain the data)
-  def setupSpec() {
-    sql.execute("create table maxdata (id int primary key, a int, b int, c int)")
-    sql.execute("insert into maxdata values (1, 3, 7, 7), (2, 5, 4, 5), (3, 9, 9, 9)")
-  }
+class FindPivotIndexSpec extends Specification {
+    def "FindPivotIndex; Return the index where the left and right side of the index have the same sum"() {
+        setup: "Convert the List<int> to an array of int values"
+        int[] _input = input.toArray()
 
-  def "maximum of two numbers"() {
-    expect:
-    Math.max(a, b) == c
+        expect:
+        FindPivotIndex.pivotIndex(_input) == result
 
-    where:
-    [a, b, c] << sql.rows("select a, b, c from maxdata")
-  }
+        where:
+        input || result
+        [1, 7, 3, 6, 5, 6] || 3
+        [1, 2, 3]          || -1
+    }
 }
