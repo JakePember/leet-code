@@ -1,3 +1,4 @@
+package binary_search
 /*
  * Copyright 2009 the original author or authors.
  *
@@ -14,22 +15,23 @@
  * limitations under the License.
  */
 
+
+import binary_search.PlusOne
 import spock.lang.Specification
 
-class LargestNumberAtLeastTwiceOfOthersSpec extends Specification {
-    def "FindPivotIndex; Return the index where the left and right side of the index have the same sum"() {
+class PlusOneSpec extends Specification {
+    def "Input: [1,2,3] Output: [1,2,4] Explanation: The array represents the integer 123."() {
         setup: "Convert the List<int> to an array of int values"
         int[] _input = input.toArray()
+        int[] _result = result.toArray()
 
         expect:
-        LargestNumberAtLeastTwiceOfOthers.dominantIndex(_input) == result
+        PlusOne.plusOne(_input) == _result
 
         where:
-        input        || result
-        [3, 6, 1, 0] || 1
-        [1, 2, 3, 4] || -1
-        [0, 0, 2, 3] || -1
-        [0, 1, 1, 2] || 3
-        [0, 0, 3, 2] || -1
+        input                          || result
+        [1, 2, 3]                      || [1, 2, 4]
+        [9]                            || [1, 0]
+        [9, 8, 7, 6, 5, 4, 3, 2, 1, 0] || [9, 8, 7, 6, 5, 4, 3, 2, 1, 1]
     }
 }

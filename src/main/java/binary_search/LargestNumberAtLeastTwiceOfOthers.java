@@ -1,3 +1,5 @@
+package binary_search;
+
 /*
  * Link to problem: https://leetcode.com/explore/learn/card/array-and-string/201/introduction-to-array/1147/
  * In a given integer array nums, there is always exactly one largest element.

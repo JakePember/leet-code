@@ -1,3 +1,5 @@
+package binary_search;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,15 +48,7 @@ public class PlusOne {
                 }
 
                 // convert list of Integers back to int array
-                int[] arr = new int[10];
-                int count = 0;
-                for (Integer x : newDigitsList) {
-                    int i = x;
-                    if (arr.length == count) arr = Arrays.copyOf(arr, count * 2);
-                    arr[count++] = i;
-                }
-                arr = Arrays.copyOfRange(arr, 0, count);
-                return arr;
+                return convertListIntToIntArray(newDigitsList);
             }
 
 
@@ -63,24 +57,27 @@ public class PlusOne {
                 //all numbers will be 0 after the first 9 from left to right
                 if (index > firstNonNineIndex) {
                     newDigitsList.add(0);
-                    continue;
                 } else if (index == firstNonNineIndex) { //increment the number before the first 9 by one
                     newDigitsList.add(digits[index] + 1);
                 } else { //add all the non affected numbers back to the list
                     newDigitsList.add(digits[index]);
                 }
             }
-            int[] arr = new int[10];
-            int count = 0;
-            for (Integer x : newDigitsList) {
-                int i = x;
-                if (arr.length == count) arr = Arrays.copyOf(arr, count * 2);
-                arr[count++] = i;
-            }
-            arr = Arrays.copyOfRange(arr, 0, count);
-            return arr;
+            return convertListIntToIntArray(newDigitsList);
         }
 
         return new int[]{-1};
+    }
+
+    private static int[] convertListIntToIntArray(List<Integer> newDigitsList) {
+        int[] arr = new int[10];
+        int count = 0;
+        for (Integer x : newDigitsList) {
+            int i = x;
+            if (arr.length == count) arr = Arrays.copyOf(arr, count * 2);
+            arr[count++] = i;
+        }
+        arr = Arrays.copyOfRange(arr, 0, count);
+        return arr;
     }
 }

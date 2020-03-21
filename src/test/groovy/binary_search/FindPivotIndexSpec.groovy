@@ -1,3 +1,4 @@
+package binary_search
 /*
  * Copyright 2009 the original author or authors.
  *
@@ -14,21 +15,21 @@
  * limitations under the License.
  */
 
-import spock.lang.Specification
 
-class PlusOneSpec extends Specification {
-    def "FindPivotIndex; Return the index where the left and right side of the index have the same sum"() {
+import binary_search.FindPivotIndex
+import spock.lang.*
+
+class FindPivotIndexSpec extends Specification {
+    def "binary_search.FindPivotIndex; Return the index where the left and right side of the index have the same sum"() {
         setup: "Convert the List<int> to an array of int values"
         int[] _input = input.toArray()
-        int[] _result = result.toArray()
 
         expect:
-        PlusOne.plusOne(_input) == _result
+        FindPivotIndex.pivotIndex(_input) == result
 
         where:
-        input                          || result
-        [1, 2, 3]                      || [1, 2, 4]
-        [9]                            || [1, 0]
-        [9, 8, 7, 6, 5, 4, 3, 2, 1, 0] || [9, 8, 7, 6, 5, 4, 3, 2, 1, 1]
+        input | result
+        [1, 7, 3, 6, 5, 6] | 3
+        [1, 2, 3]          | -1
     }
 }
